@@ -2,7 +2,7 @@
  * Returns the current local Unix time
  * @param offset - This many seconds will be added to the returned time
  */
-export function getLocalUnixTime(offset?: number) {
+export function getLocalUnixTime(offset?: number): number {
   return Math.floor(Date.now() / 1000) + (offset || 0);
 }
 
@@ -11,7 +11,7 @@ export function getLocalUnixTime(offset?: number) {
  * 
  * Offset will be fetched from: https://api.steampowered.com/ITwoFactorService/QueryTime/v1/
  */
-export async function getTimeOffset() {
+export async function getTimeOffset(): Promise<number> {
   const response = await fetch(
     "https://api.steampowered.com/ITwoFactorService/QueryTime/v1/",
     {

@@ -9,7 +9,7 @@ import { getLocalUnixTime, getTimeOffset } from "./time.ts";
 function generateAuthCode(
   sharedSecret: string | Buffer,
   timeOffset?: number,
-) {
+): string {
   const secretBuffer = bufferizeSecret(sharedSecret);
 
   const offsetedLocalUnixTime = getLocalUnixTime(timeOffset || 0);
@@ -55,7 +55,7 @@ function generateConfirmationCode(
     time?: number;
     tag?: "conf" | "details" | "allow" | "cancel";
   },
-) {
+): string {
   if (!options) {
     options = {};
   }
@@ -90,7 +90,7 @@ function generateConfirmationCode(
   ).toString("base64");
 }
 
-function bufferizeSecret(secret: string | Buffer) {
+function bufferizeSecret(secret: string | Buffer): Buffer {
   if (typeof secret === "string") {
     // Check if it's hex
     if (secret.match(/[0-9a-f]{40}/i)) {
@@ -108,7 +108,7 @@ function bufferizeSecret(secret: string | Buffer) {
  * @param steamID - Your SteamID, either as a string or as an object which has a toString() method that returns the SteamID
  */
 // deno-lint-ignore ban-types
-function getDeviceID(steamID: string | object) {
+function getDeviceID(steamID: string | object): string {
   const salt = Deno.env.get("STEAM_TOTP_SALT") || "";
   const steamIDString = typeof steamID === "string"
     ? steamID
