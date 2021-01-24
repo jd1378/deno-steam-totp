@@ -7,9 +7,9 @@ export function getLocalUnixTime(offset?: number) {
 }
 
 /**
- * Offset will be fetched from: https://api.steampowered.com/ITwoFactorService/QueryTime/v1/
+ * Returns offset between you and steam servers in seconds
  * 
- * Returns offset in seconds
+ * Offset will be fetched from: https://api.steampowered.com/ITwoFactorService/QueryTime/v1/
  */
 export async function getTimeOffset() {
   const response = await fetch(
