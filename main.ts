@@ -3,14 +3,14 @@ import { getLocalUnixTime, getTimeOffset } from "./time.ts";
 
 /**
  * Generate a Steam-style TOTP authentication code.
- * @param secret - Your TOTP shared_secret as a Buffer, hex, or base64
+ * @param sharedSecret - Your TOTP shared_secret as a Buffer, hex, or base64
  * @param timeOffset - If you know how far off your clock is from the Steam servers, put the offset here in seconds.
  */
 function generateAuthCode(
-  secret: string | Buffer,
+  sharedSecret: string | Buffer,
   timeOffset?: number,
 ) {
-  const secretBuffer = bufferizeSecret(secret);
+  const secretBuffer = bufferizeSecret(sharedSecret);
 
   const offsetedLocalUnixTime = getLocalUnixTime(timeOffset || 0);
 
