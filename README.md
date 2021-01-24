@@ -21,18 +21,18 @@ options?: {
 }
 ```
 
-## getDeviceID(steamID: string | object): string
+## getDeviceID(steamID: string | object, salt?: string): string
 
 Get a standardized device ID based on your SteamID.
 
 ### steamID - Your SteamID, either as a string or as an object which has a toString() method that returns the SteamID
 
-If you provide `STEAM_TOTP_SALT` in environment variables of deno, it will be picked up using Deno.env.get('STEAM_TOTP_SALT')
+`STEAM_TOTP_SALT` is not supported.
 
 The algorithm used is:
 
 1. Convert the SteamID to a string
-2. Append the value of the STEAM_TOTP_SALT environment variable to the SteamID, If It's set
+2. Append the value of the `salt` param to the SteamID, If It's set
 3. SHA-1 hash it and encode the resulting hash as a lowercase hex value
 4. Truncate the hash to 32 characters
 5. Insert dashes such that the resulting value has 5 groups of hexadecimal values containing 8, 4, 4, 4, and 12 characters, respectively

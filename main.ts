@@ -108,15 +108,15 @@ function bufferizeSecret(secret: string | Buffer): Buffer {
  * @param steamID - Your SteamID, either as a string or as an object which has a toString() method that returns the SteamID
  */
 // deno-lint-ignore ban-types
-function getDeviceID(steamID: string | object): string {
-  const salt = Deno.env.get("STEAM_TOTP_SALT") || "";
+function getDeviceID(steamID: string | object, salt?: string): string {
   const steamIDString = typeof steamID === "string"
     ? steamID
     : steamID.toString();
-  return "android:" + new Sha1().update(steamIDString + salt).hex().replace(
-    /^([0-9a-f]{8})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{12}).*$/,
-    "$1-$2-$3-$4-$5",
-  );
+  return "android:" +
+    new Sha1().update(steamIDString + (salt || "")).hex().replace(
+      /^([0-9a-f]{8})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{12}).*$/,
+      "$1-$2-$3-$4-$5",
+    );
 }
 
 export {
