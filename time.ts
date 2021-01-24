@@ -1,9 +1,9 @@
 /**
  * Returns the current local Unix time
- * @param timeOffset - This many seconds will be added to the returned time
+ * @param offset - This many seconds will be added to the returned time
  */
-export function getLocalUnixTime(timeOffset?: number) {
-  return Math.floor(Date.now() / 1000) + (timeOffset || 0);
+export function getLocalUnixTime(offset?: number) {
+  return Math.floor(Date.now() / 1000) + (offset || 0);
 }
 
 /**
