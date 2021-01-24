@@ -105,8 +105,7 @@ function bufferizeSecret(secret: string | Buffer) {
 
 /**
  * Get a standardized device ID based on your SteamID.
- * @param {string|object} steamID - Your SteamID, either as a string or as an object which has a toString() method that returns the SteamID
- * @returns {string}
+ * @param steamID - Your SteamID, either as a string or as an object which has a toString() method that returns the SteamID
  */
 // deno-lint-ignore ban-types
 function getDeviceID(steamID: string | object) {
