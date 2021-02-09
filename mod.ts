@@ -55,7 +55,7 @@ export function generateConfirmationKey(
   identitySecret: Buffer | string,
   options?: {
     time?: number;
-    tag?: "conf" | "details" | "allow" | "cancel";
+    tag?: "conf" | "details" | "allow" | "cancel" | string;
   },
 ): string {
   if (!options) {
