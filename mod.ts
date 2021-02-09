@@ -126,3 +126,5 @@ export {
   getLocalUnixTime,
   getTimeOffset,
 };
+
+export * from "./time.ts";
