@@ -1,12 +1,14 @@
 import { Buffer, HmacSha1, Sha1 } from "./deps.ts";
-import { getLocalUnixTime, getTimeOffset } from "./time.ts";
+import { getLocalUnixTime } from "./time.ts";
+
+export * from "./time.ts";
 
 /**
  * Generate a Steam-style TOTP authentication code.
  * @param sharedSecret - Your TOTP shared_secret as a Buffer, hex, or base64
  * @param timeOffset - If you know how far off your clock is from the Steam servers, put the offset here in seconds.
  */
-function generateAuthCode(
+export function generateAuthCode(
   sharedSecret: string | Buffer,
   timeOffset?: number,
 ): string {
@@ -49,7 +51,7 @@ function generateAuthCode(
  * "allow" to confirm a trade.
  * "cancel" to cancel it.
  */
-function generateConfirmationCode(
+export function generateConfirmationKey(
   identitySecret: Buffer | string,
   options?: {
     time?: number;
@@ -90,7 +92,7 @@ function generateConfirmationCode(
   ).toString("base64");
 }
 
-function bufferizeSecret(secret: string | Buffer): Buffer {
+export function bufferizeSecret(secret: string | Buffer): Buffer {
   if (typeof secret === "string") {
     // Check if it's hex
     if (secret.match(/[0-9a-f]{40}/i)) {
@@ -108,7 +110,7 @@ function bufferizeSecret(secret: string | Buffer): Buffer {
  * @param steamID - Your SteamID, either as a string or as an object which has a toString() method that returns the SteamID
  */
 // deno-lint-ignore ban-types
-function getDeviceID(steamID: string | object, salt?: string): string {
+export function getDeviceID(steamID: string | object, salt?: string): string {
   const steamIDString = typeof steamID === "string"
     ? steamID
     : steamID.toString();
@@ -118,13 +120,3 @@ function getDeviceID(steamID: string | object, salt?: string): string {
       "$1-$2-$3-$4-$5",
     );
 }
-
-export {
-  generateAuthCode,
-  generateConfirmationCode,
-  getDeviceID,
-  getLocalUnixTime,
-  getTimeOffset,
-};
-
-export * from "./time.ts";
