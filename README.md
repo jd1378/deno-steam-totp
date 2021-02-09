@@ -4,6 +4,12 @@ This is a deno version of [node-steam-totp by DoctorMcKay](https://github.com/Do
 
 It's a port of his module, just a little bit different.
 
+## usage
+
+```js
+import * as SteamTotp from 'https://deno.land/x/steamtotp@v2.1.0';
+```
+
 ## generateAuthCode( secret: string | Buffer, timeOffset?: number): string
 
 Generate a Steam-style TOTP authentication code.
