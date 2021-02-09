@@ -7,7 +7,7 @@ It's a port of his module, just a little bit different.
 ## usage
 
 ```js
-import * as SteamTotp from 'https://deno.land/x/steamtotp@v2.1.0';
+import * as SteamTotp from 'https://deno.land/x/steamtotp@v3.0.1';
 ```
 
 ## generateAuthCode( secret: string | Buffer, timeOffset?: number): string
